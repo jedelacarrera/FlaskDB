@@ -51,23 +51,29 @@ def home():
 
 @app.route("/mongo")
 def mongo():
-    query = request.args.get("query")
-    results = eval('mongodb.'+query)
-    results = json_util.dumps(results, sort_keys=True, indent=4)
-    if "find" in query:
-        return render_template('mongo.html', results=results)
-    else:
-        return "ok"
+    try:
+        query = request.args.get("query")
+        results = eval('mongodb.'+query)
+        results = json_util.dumps(results, sort_keys=True, indent=4)
+        if "find" in query:
+            return render_template('mongo.html', results=results)
+        else:
+            return "ok"
+    except:
+        return render_template('mongo.html', results={})
 
 
 @app.route("/postgres")
 def postgres():
-    query = request.args.get("query")
-    cursor = postgresdb.cursor()
-    cursor.execute(query)
-    results = [[a for a in result] for result in cursor]
-    print(results)
-    return render_template('postgres.html', results=results)
+    try:
+        query = request.args.get("query")
+        cursor = postgresdb.cursor()
+        cursor.execute(query)
+        results = [[a for a in result] for result in cursor]
+        print(results)
+        return render_template('postgres.html', results=results)
+    except:return render_template('postgres.html', results=[])
+
 
 
 @app.route("/example")
