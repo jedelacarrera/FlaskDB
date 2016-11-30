@@ -39,6 +39,24 @@
     "name": "Users",
     "database": "mongo",
     "description": "todo de messages",
-    "query": "test.messages.find()"  
+    "query": "messages.find()"  
+  },
+  {
+    "name": "Users",
+    "database": "mongo",
+    "description": "todo de messages",
+    "query": "users.find()"  
+  },
+  {
+    "name": "Users",
+    "database": "mongo",
+    "description": "todo de messages",
+    "query": "test.find()"  
+  },
+  {
+    "name": "Users",
+    "database": "mongo",
+    "description": "todo de messages",
+    "query": "myCollection.users.find()"  
   }
 ]
