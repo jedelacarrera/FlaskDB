@@ -28,5 +28,17 @@
     "database": "mongo",
     "description": "Mala descripcion",
     "query": "myCollection.insert( { \"attribute\": \"value\" } )"
+  },
+  {
+    "name": "Users",
+    "database": "mongo",
+    "description": "todo de users",
+    "query": "test.users.find()"  
+  },
+  {
+    "name": "Users",
+    "database": "mongo",
+    "description": "todo de messages",
+    "query": "test.messages.find()"  
   }
 ]
