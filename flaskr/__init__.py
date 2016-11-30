@@ -60,7 +60,7 @@ def mongo():
         else:
             return "ok"
     except:
-        return render_template('mongo.html', results={})
+        return render_template('mongo.html', results={'query': query, 'problema': 'falta la base de datos de mongo'})
 
 
 @app.route("/postgres")
@@ -72,7 +72,7 @@ def postgres():
         results = [[a for a in result] for result in cursor]
         print(results)
         return render_template('postgres.html', results=results)
-    except:return render_template('postgres.html', results=[])
+    except:return render_template('postgres.html', results=[['status', 'Error'],['Ricci encargate', 'Pidele ayuda a wayo'], ['query', query]])
 
 
 
