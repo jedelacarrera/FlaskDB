@@ -59,7 +59,8 @@
     "name": "Visualización de posición de usuarios",
     "database": "mongo",
     "description": "Ingrese usuario y rango entre dos fechas",
-    "query": 0
+    "query": 0,
+    "params": []
   },
   {
     "name": "Users",
