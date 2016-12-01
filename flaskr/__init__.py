@@ -75,6 +75,9 @@ def mongo():
                 pos = query.find('param')
                 num = query[pos + 5]
                 query = query.replace('param'+num, args[int(num) - 1])
+        if 'messages.find({$and: [{$or: [{"sender":' in query:
+            string = query[query.find]
+            results = mongodb.messages.find({'$and': [{'$or': [{"sender": 3}, {"sender": 33}]}, {'$or': [{"receptant": 3}, {"receptant": 33}]}]}, {"_id": 0, "date": 1, "sender": 1, "message":1, "receptant": 1})
         results = eval('mongodb.'+query)
         results = json_util.dumps(results, sort_keys=True, indent=4)
         if "find" in query:
