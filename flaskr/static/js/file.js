@@ -14,7 +14,10 @@ $(document).ready(function(){
   $(".mdl-button.mdl-button--icon.mdl-js-button.mdl-js-ripple-effect.play")
     .click(function() {
       var db = $(this).prev()[0].textContent.split('-')[0].trim();
+      try {
       var query = $(this).parent().parent().find(".query-card-code > span")[0].textContent;
+      } catch(err) {
+        var query = $(this).parent().parent().find(".query-card-code > input")[0].value;
+      };
       window.location.assign(location.href+db+'?query='+query);
   });
-});
