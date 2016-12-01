@@ -82,5 +82,12 @@
     "description": "probando",
     "query": "messages.find({sender: param, receptant: param}, {_id: 0, message:1, receptant: 1})",
     "params": [1, 2]
+  },
+  {
+    "name": "Mensajes entre dos usuarios",
+    "database": "mongo",
+    "description": "Ingrese dos id de usuario que quiere los mensajes entre ellos.",
+    "query": "messages.find({$and: [{$or: [{\"sender\": param1}, {\"sender\": param2}]}, {$or: [{\"receptant\": param1}, {\"receptant\": param2}]}]}, {\"_id\": 0, \"date\": 1, \"sender\": 1, \"message\":1, \"receptant\": 1})",
+    "params": [1, 2]
   }
 ]
