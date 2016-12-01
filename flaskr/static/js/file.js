@@ -19,6 +19,11 @@ $(document).ready(function(){
       } catch(err) {
         var query = $(this).parent().parent().find(".query-card-code > input")[0].value;
       };
+      var cantidad = $(this).parent().parent().find(".query-card-code > input").length;
+
+      for (i=0, i++, i<cantidad) {
+        query = query + '-' + $(this).parent().parent().find(".query-card-code > input")[i].value; 
+      }
       window.location.assign(location.href+db+'?query='+query);
   });
 

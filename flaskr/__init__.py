@@ -50,7 +50,8 @@ def home():
             pairs = [(x["name"],
                       x["database"],
                       x["description"],
-                      x["query"]) for x in json_file]
+                      x["query"],
+                      x["params"]) for x in json_file]
             return render_template('file.html', results=pairs)
     except(FileNotFoundError):
         with open('queries', 'r', encoding='utf-8') as queries_file:
@@ -58,14 +59,20 @@ def home():
             pairs = [(x["name"],
                       x["database"],
                       x["description"],
-                      x["query"]) for x in json_file]
+                      x["query"],
+                      x["params"]) for x in json_file]
             return render_template('file.html', results=pairs)
 
 
 @app.route("/mongo")
 def mongo():
     try:
-        query = request.args.get("query")
+        lista = request.args.get("query").split('-')
+        query = lista[0]
+        if len(lista) > 1:
+            args = lista[1:]
+            for arg in args:
+                query = query.replace('param', arg, 1)
         results = eval('mongodb.'+query)
         results = json_util.dumps(results, sort_keys=True, indent=4)
         if "find" in query:

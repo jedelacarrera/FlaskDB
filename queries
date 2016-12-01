@@ -3,66 +3,84 @@
     "name": "Seleccionar todo de mytable",
     "database": "postgres",
     "description": "NAda que decir",
-    "query": "SELECT * FROM mytable;"
+    "query": "SELECT * FROM mytable;",
+    "params": []
   },
   {
-  "name": "Consulta 2",
-  "database": "mongo",
-  "description": "Buscar por atributo",
-  "query": "myCollection.find( {\"attribute\": \"value\"} )"
+    "name": "Consulta 2",
+    "database": "mongo",
+    "description": "Buscar por atributo",
+    "query": "myCollection.find( {\"attribute\": \"value\"} )",
+    "params": []
   },
   {
     "name": "Sebastián",
     "database": "postgres",
     "description": "Ningun brillo 🙋",
-    "query": "SELECT * FROM mytable WHERE nombre='Sebastián';"
+    "query": "SELECT * FROM mytable WHERE nombre='Sebastián';",
+    "params": []
   },
   {
     "name": "Quiero todo de mongo 😄",
     "database": "mongo",
     "description": "Nada que decir",
-    "query": "myCollection.find({}, {})"
+    "query": "myCollection.find({}, {})",
+    "params": []
   },
   {
     "name": "Insertar a mongo",
     "database": "mongo",
     "description": "Mala descripcion",
-    "query": "myCollection.insert( { \"attribute\": \"value\" } )"
+    "query": "myCollection.insert( { \"attribute\": \"value\" } )",
+    "params": []
   },
   {
     "name": "Users",
     "database": "mongo",
     "description": "todo de users",
-    "query": "test.users.find()"  
+    "query": "test.users.find()",
+    "params": []
   },
   {
     "name": "Users",
     "database": "mongo",
     "description": "todo de messages",
-    "query": "messages.find()"  
+    "query": "messages.find()",
+    "params": []
   },
   {
     "name": "Users",
     "database": "mongo",
     "description": "todo de messages",
-    "query": "users.find()"  
+    "query": "users.find()",
+    "params": []
   },
   {
     "name": "Users",
     "database": "mongo",
     "description": "todo de messages",
-    "query": "test.find()"  
+    "query": "test.find()",
+    "params": []
   },
   {
     "name": "Users",
     "database": "mongo",
     "description": "todo de messages",
-    "query": "myCollection.users.find()"  
+    "query": "myCollection.users.find()",
+    "params": []  
   },
   {
     "name": "Mensajes por usuario",
     "database": "mongo",
     "description": "Entregar todos los mensajes emitidos por un usuario de la red social. Debe entregar un id de usuario",
-    "query": 0
+    "query": "messages.find({sender: param}, {_id: 0, message:1, receptant: 1})",
+    "params": [1]
+  },
+  {
+    "name": "Mensajes por usuario (prueba)",
+    "database": "mongo",
+    "description": "probando",
+    "query": "messages.find({sender: param, receptant: param}, {_id: 0, message:1, receptant: 1})",
+    "params": [1, 2]
   }
 ]

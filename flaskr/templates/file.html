@@ -8,7 +8,7 @@
 {% block content %}
   <div class="main-container">
     <div class="container">
-      {% for name, db, description, query in results %}
+      {% for name, db, description, query, params in results %}
       {% set algomuysucio = 'onClickQuery("{}","{}")'.format(db, query) %}
 
       <div class="query-card mdl-shadow--2dp">
@@ -28,11 +28,11 @@
             </button>
           </div>
             <div class="query-card-code">
-            {% if (query == 0) %}
-              <input name="id_usuario" value="1">
-            {% else %}
               <span>{{query}}</span>
-            {% endif %}
+            {% for num in params %}
+              <br>
+              Param {{num}}: <input name="{{num}}" value="{{num}}">
+            {% endfor %}
             </div>
         </div>
       </div>
