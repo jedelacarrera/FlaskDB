@@ -100,6 +100,10 @@ def postgres():
 def example():
     return render_template('example.html')
 
+@app.route("/map")
+def map():
+    return render_template('leaflet.html')
+
 
 if __name__ == "__main__":
     app.run()
