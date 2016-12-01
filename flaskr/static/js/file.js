@@ -1,4 +1,4 @@
-ar ARROWS = {
+var ARROWS = {
   keyboard_arrow_up: "keyboard_arrow_down",
   keyboard_arrow_down: "keyboard_arrow_up",
 };
@@ -17,7 +17,7 @@ $(document).ready(function(){
       try {
       var query = $(this).parent().parent().find(".query-card-code > span")[0].textContent
       } catch(err) {
-        var query = $(this).parent().parent().find(".query-card-code > input")[0].value
+      var query = $(this).parent().parent().find(".query-card-code > input")[0].value
       }
       window.location.assign(location.href+db+'?query='+query);
   });
