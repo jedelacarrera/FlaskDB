@@ -28,6 +28,10 @@
             </button>
           </div>
             <div class="query-card-code">
+            {% if (query == 0) %}
+            Id usuario:
+              <input name="id_usuario" value="1">
+            {% else %}
               <span>{{query}}</span>
             {% for num in params %}
               <br>
@@ -38,9 +42,6 @@
       </div>
       {% endfor %}
     </div>
-    <form action="http://bases.ing.puc.cl/~grupo18/entrega4/login.php" method="get">
-      <input type="submit" value="Ver Entrega3">
-    </form>
   </div>
 
   <form action="http://bases.ing.puc.cl/~grupo18/entrega4/home2.php" method="get">
