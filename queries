@@ -58,5 +58,11 @@
     "database": "mongo",
     "description": "todo de messages",
     "query": "myCollection.users.find()"  
+  },
+  {
+    "name": "Mensajes por usuario",
+    "database": "mongo",
+    "description": "Entregar todos los mensajes emitidos por un usuario de la red social. Debe entregar un id de usuario",
+    "query": 0
   }
 ]

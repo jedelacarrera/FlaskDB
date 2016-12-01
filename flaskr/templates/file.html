@@ -22,9 +22,13 @@
               <i class="material-icons">keyboard_arrow_up</i>
             </button>
           </div>
-          <div class="query-card-code">
-            <span>{{query}}</span>
-          </div>
+          {% if (query == 0) %}
+            <input name="id_usuario">
+          {% else %}
+            <div class="query-card-code">
+              <span>{{query}}</span>
+            </div>
+          {% endif %}
         </div>
       </div>
       {% endfor %}
