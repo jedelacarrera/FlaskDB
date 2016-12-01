@@ -2,7 +2,7 @@
 # -*- coding: latin-1 -*-
 import os
 import sys
-# import psycopg2
+import psycopg2
 import json
 from bson import json_util
 from pymongo import MongoClient
@@ -23,19 +23,26 @@ MONGOPORT = 27017
 client = MongoClient(MONGOSERVER, MONGOPORT)
 mongodb = client[MONGODATABASE]
 
-''' # Uncomment for postgres connection
+# Uncomment for postgres connection
 # REPLACE WITH YOUR DATABASE NAME, USER AND PASS
-POSTGRESDATABASE = "mydatabase"
-POSTGRESUSER = "myuser"
-POSTGRESPASS = "mypass"
+
+"""
+POSTGRESDATABASE = "myDatabase"
+POSTGRESUSER = "user"
+POSTGRESPASS = "password"
 postgresdb = psycopg2.connect(
     database=POSTGRESDATABASE,
     user=POSTGRESUSER,
     password=POSTGRESPASS)
-'''
+"""
 
+<<<<<<< HEAD
+#Cambiar por Path Absoluto en el servidor
+QUERIES_FILENAME = 'queries'
+=======
 # Path para el servidor
 QUERIES_FILENAME = '/var/www/flaskr/queries'
+>>>>>>> 28b0d0086371ada6f0a8158f869ef172e9c705c9
 
 # Path para local
 # QUERIES_FILENAME = 'queries'
@@ -84,7 +91,7 @@ def postgres():
         results = [[a for a in result] for result in cursor]
         print(results)
         return render_template('postgres.html', results=results)
-    except:return render_template('postgres.html', results=[['status', 'Error'],['Ricci encargate', 'Pidele ayuda a wayo'], ['query', query]])
+    except:return render_template('postgres.html', results=[['status', 'Error'],['Ricci hola', ' wayo hola'], ['query', query]])
 
 
 
