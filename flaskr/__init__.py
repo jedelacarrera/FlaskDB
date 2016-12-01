@@ -34,19 +34,31 @@ postgresdb = psycopg2.connect(
     password=POSTGRESPASS)
 '''
 
-#Cambiar por Path Absoluto en el servidor
+# Path para el servidor
 QUERIES_FILENAME = '/var/www/flaskr/queries'
+
+# Path para local
+QUERIES_FILENAME = 'queries'
 
 
 @app.route("/")
 def home():
-    with open(QUERIES_FILENAME, 'r', encoding='utf-8') as queries_file:
-        json_file = json.load(queries_file)
-        pairs = [(x["name"],
-                  x["database"],
-                  x["description"],
-                  x["query"]) for x in json_file]
-        return render_template('file.html', results=pairs)
+    try:
+        with open(QUERIES_FILENAME, 'r', encoding='utf-8') as queries_file:
+            json_file = json.load(queries_file)
+            pairs = [(x["name"],
+                      x["database"],
+                      x["description"],
+                      x["query"]) for x in json_file]
+            return render_template('file.html', results=pairs)
+        except FilNotFoundError:
+            with open('queries', 'r', encoding='utf-8') as queries_file:
+                json_file = json.load(queries_file)
+                pairs = [(x["name"],
+                          x["database"],
+                          x["description"],
+                          x["query"]) for x in json_file]
+                return render_template('file.html', results=pairs)
 
 
 @app.route("/mongo")

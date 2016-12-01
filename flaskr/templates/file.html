@@ -1,5 +1,9 @@
   {% extends "layout.html" %}
 
+{% block title %}
+18 - 19
+{% endblock %}
+
 {% block content %}
   <div class="main-container">
     <div class="container">
@@ -22,13 +26,13 @@
               <i class="material-icons">keyboard_arrow_up</i>
             </button>
           </div>
-          {% if (query == 0) %}
-            <input name="id_usuario">
-          {% else %}
             <div class="query-card-code">
+            {% if (query == 0) %}
+              <input name="id_usuario" value="1">
+            {% else %}
               <span>{{query}}</span>
+            {% endif %}
             </div>
-          {% endif %}
         </div>
       </div>
       {% endfor %}
