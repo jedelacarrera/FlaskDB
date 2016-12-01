@@ -56,6 +56,12 @@
     "params": []
   },
   {
+    "name": "Visualización de posición de usuarios",
+    "database": "mongo",
+    "description": "Ingrese usuario y rango entre dos fechas",
+    "query": 0
+  },
+  {
     "name": "Users",
     "database": "mongo",
     "description": "todo de messages",
