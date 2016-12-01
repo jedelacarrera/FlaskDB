@@ -70,11 +70,12 @@ def mongo():
         lista = request.args.get("query").split('-')
         query = lista[0]
         if len(lista) > 1:
-		while query.find('param') != -1:
-			pos = query.find('param')
-                	num = query[pos + 5]
-                	query = query.replace(pos+num, args[int(num) - 1])
-        results = eval('mongodb.'+query)        results = json_util.dumps(results, sort_keys=True, indent=4)
+            while query.find('param') != -1:
+                pos = query.find('param')
+                num = query[pos + 5]
+                query = query.replace(pos+num, args[int(num) - 1])
+        results = eval('mongodb.'+query)
+        results = json_util.dumps(results, sort_keys=True, indent=4)
         if "find" in query:
             return render_template('mongo.html', results=results)
         else:
