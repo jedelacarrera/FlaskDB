@@ -21,7 +21,7 @@ $(document).ready(function(){
       };
       var cantidad = $(this).parent().parent().find(".query-card-code > input").length;
 
-      for (i=0, i<cantidad, i++) {
+      for (i=0; i<cantidad; i++) {
         query = query + '-' + $(this).parent().parent().find(".query-card-code > input")[i].value; 
       };
       window.location.assign(location.href+db+'?query='+query);
