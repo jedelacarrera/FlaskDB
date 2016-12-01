@@ -73,14 +73,14 @@
     "name": "Mensajes por usuario",
     "database": "mongo",
     "description": "Entregar todos los mensajes emitidos por un usuario de la red social. Debe entregar un id de usuario",
-    "query": "messages.find({sender: param}, {_id: 0, message:1, receptant: 1})",
+    "query": "messages.find({\"sender\": param1}, {\"_id\": 0, \"message\":1, \"receptant\": 1, \"date\": 1})",
     "params": [1]
   },
   {
-    "name": "Mensajes por usuario (prueba)",
+    "name": "Mensajes entre dos usuarios",
     "database": "mongo",
     "description": "probando",
-    "query": "messages.find({sender: param, receptant: param}, {_id: 0, message:1, receptant: 1})",
+    "query": "messages.find({$and: [{$or: [{\"sender\": param1}, {\"sender\": param2}]}, {$or: [{\"receptant\": param1}, {\"receptant\": param2}]}]}, {\"_id\": 0, \"date\": 1, \"sender\": 1, \"message\":1, \"receptant\": 1})",
     "params": [1, 2]
   }
 ]
