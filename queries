@@ -1,48 +1,7 @@
+
 [
   {
-    "name": "Seleccionar todo de mytable",
-    "database": "postgres",
-    "description": "NAda que decir",
-    "query": "SELECT * FROM mytable;",
-    "params": []
-  },
-  {
-    "name": "Consulta 2",
-    "database": "mongo",
-    "description": "Buscar por atributo",
-    "query": "myCollection.find( {\"attribute\": \"value\"} )",
-    "params": []
-  },
-  {
-    "name": "Sebastián",
-    "database": "postgres",
-    "description": "Ningun brillo 🙋",
-    "query": "SELECT * FROM mytable WHERE nombre='Sebastián';",
-    "params": []
-  },
-  {
-    "name": "Quiero todo de mongo 😄",
-    "database": "mongo",
-    "description": "Nada que decir",
-    "query": "myCollection.find({}, {})",
-    "params": []
-  },
-  {
-    "name": "Insertar a mongo",
-    "database": "mongo",
-    "description": "Mala descripcion",
-    "query": "myCollection.insert( { \"attribute\": \"value\" } )",
-    "params": []
-  },
-  {
-    "name": "Users",
-    "database": "mongo",
-    "description": "todo de users",
-    "query": "test.users.find()",
-    "params": []
-  },
-  {
-    "name": "Users",
+    "name": "Mensajes",
     "database": "mongo",
     "description": "todo de messages",
     "query": "messages.find()",
@@ -51,30 +10,9 @@
   {
     "name": "Users",
     "database": "mongo",
-    "description": "todo de messages",
+    "description": "todo de users",
     "query": "users.find()",
     "params": []
-  },
-  {
-    "name": "Visualización de posición de usuarios",
-    "database": "mongo",
-    "description": "Ingrese usuario y rango entre dos fechas",
-    "query": 0,
-    "params": []
-  },
-  {
-    "name": "Users",
-    "database": "mongo",
-    "description": "todo de messages",
-    "query": "test.find()",
-    "params": []
-  },
-  {
-    "name": "Users",
-    "database": "mongo",
-    "description": "todo de messages",
-    "query": "myCollection.users.find()",
-    "params": []  
   },
   {
     "name": "Mensajes por usuario",
@@ -86,22 +24,43 @@
   {
     "name": "Mensajes entre dos usuarios",
     "database": "mongo",
-    "description": "probando",
-    "query": "messages.find({$and: [{$or: [{\"sender\": param1}, {\"sender\": param2}]}, {$or: [{\"receptant\": param1}, {\"receptant\": param2}]}]}, {\"_id\": 0, \"date\": 1, \"sender\": 1, \"message\":1, \"receptant\": 1})",
+    "description": "Ingrese dos id de usuario que quiere los mensajes entre ellos.",
+    "query": "messages.find({\"$and\": [{\"$or\": [{\"sender\": param1}, {\"sender\": param2}]}, {\"$or\": [{\"receptant\": param1}, {\"receptant\": param2}]}]}, {\"_id\": 0, \"date\": 1, \"sender\": 1, \"message\":1, \"receptant\": 1})",
     "params": [1, 2]
   },
   {
-    "name": "Mensajes entre dos usuarios",
+    "name": "Mensajes por usuario en un rango de fechas",
     "database": "mongo",
-    "description": "Ingrese dos id de usuario que quiere los mensajes entre ellos.",
-    "query": "messages.find({$and: [{$or: [{\"sender\": param1}, {\"sender\": param2}]}, {$or: [{\"receptant\": param1}, {\"receptant\": param2}]}]}, {\"_id\": 0, \"date\": 1, \"sender\": 1, \"message\":1, \"receptant\": 1})",
-    "params": [1, 2]
+    "description": "Entregar todos los mensajes emitidos por un usuario de la red social entre dos fechas. Debe entregar un id de usuario y dos fechas",
+    "query": "messages.find({\"$and\": [{\"sender\": param1}, {\"date\": {\"$gte\": param2}}, {\"date\": {\"$lte\": param3} }]}, {\"_id\": 0, \"message\":1, \"receptant\": 1})",
+    "params": [1, 2, 3]
   },
   {
-    "name": "Mensajes entre dos usuarios",
+    "name": "Mensajes por usuario en un rango de fechas en un lugar determinado",
     "database": "mongo",
-    "description": "Ingrese dos id de usuario que quiere los mensajes entre ellos.",
-    "query": "messages.find({\"sender\": param1, \"receptant\": param2}, {\"_id\": 0, \"date\": 1, \"sender\": 1, \"message\":1, \"receptant\": 1})",
-    "params": [1, 2]
+    "description": "Entregar todos los mensajes emitidos por un usuario de la red social entre dos fechas. Debe entregar un id de usuario y dos fechas y un lugar determinado(latitud y longitud)",
+    "query": "messages.find({\"$and\": [{\"sender\": param1}, {\"date\": {\"$gte\": param2}}, {\"date\": {\"$lte\": param3}}, {\"lat\": param4}, {\"long\": param5 }]}, {\"_id\": 0, \"message\":1, \"receptant\": 1})",
+    "params": [1, 2, 3, 4, 5]
+  },
+  {
+    "name": "Mensajes entre dos usuarios en un rango de fechas",
+    "database": "mongo",
+    "description": "Ingrese dos id de usuario que quiere los mensajes entre ellos y dos fechas.",
+    "query": "messages.find({\"$and\": [{\"$or\": [{\"sender\": param1}, {\"sender\": param2}]}, {\"$or\": [{\"receptant\": param1}, {\"receptant\": param2}]}, {\"date\": {\"$gte\": param3} },  {\"date\": {\"$lte\": param4} }]}, {\"_id\": 0, \"date\": 1, \"sender\": 1, \"message\":1, \"receptant\": 1})",
+    "params": [1, 2, 3, 4]
+  },
+  {
+    "name": "Mensajes entre dos usuarios en un rango de fechas y posicion determinada",
+    "database": "mongo",
+    "description": "Ingrese dos id de usuario que quiere los mensajes entre ellos, dos fechas, latitud y longitud.",
+    "query": "messages.find({\"$and\": [{\"$or\": [{\"sender\": param1}, {\"sender\": param2}]}, {\"$or\": [{\"receptant\": param1}, {\"receptant\": param2}]}, {\"date\": {\"$gte\": param3} },  {\"date\": {\"$lte\": param4}}, {\"lat\": param5}, {\"long\": param6}]}, {\"_id\": 0, \"date\": 1, \"sender\": 1, \"message\":1, \"receptant\": 1})",
+    "params": [1, 2, 3, 4, 5 , 6]
+  },
+  {
+    "name": "Localizacion del usuario entre dos fechas",
+    "database": "map",
+    "description": "Entregar la ubicacion de un usuario entre dos fechas. Debe entregar un id de usuario y dos fechas",
+    "query": "messages.find({\"sender\": param1, \"date\": {\"$gte\": param2}, \"date\": {\"$lte\": param3} }, {\"_id\": 0, \"lat\":1, \"long\": 1})",
+    "params": [1, 2, 3]
   }
 ]

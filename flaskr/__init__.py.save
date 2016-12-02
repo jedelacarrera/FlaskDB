@@ -67,22 +67,20 @@ def home():
 @app.route("/mongo")
 def mongo():
     try:
-        lista = request.args.get("query").split('---')
+        lista = request.args.get("query").split('-')
         query = lista[0]
         if len(lista) > 1:
             args = lista[1:]
             while query.find('param') != -1:
                 pos = query.find('param')
                 num = query[pos + 5]
-                if '-' in args[int(num) - 1]:
-                    args[int(num) - 1] = '"' + args[int(num) - 1] + '"'
                 query = query.replace('param'+num, args[int(num) - 1])
         if 'messages.find({$and: [{$or: [{"sender":' in query:
-            results = mongodb.messages.find({"$and": [{"$or": [{"sender": args[0]}, {"sender": args[1]}]}, {"$or": [{"receptant": args[0]}, {"receptant": args[1]}]}]}, {"_id": 0, "date": 1, "sender": 1, "message":1, "receptant": 1})
-        else:
-            results = eval('mongodb.'+query)
+		string = query[query.find]
+		results = mongodb.messages.find({'$and': [{'$or': [{"sender": args[0]}, {"sender": args[1]}]}, {'$or': [{"receptant": args[0]}, {"receptant": args[1]}]}]}, {"_id": 0, "date": 1, "sender": 1, "message":1, "receptant": 1})
+	else:
+	        results = eval('mongodb.'+query)
         results = json_util.dumps(results, sort_keys=True, indent=4)
-        
         if "find" in query:
             return render_template('mongo.html', results=results)
         else:
@@ -110,27 +108,8 @@ def example():
 
 @app.route("/map")
 def map():
-    try:
-        lista = request.args.get("query").split('---')
-        query = lista[0]
-        if len(lista) > 1:
-            args = lista[1:]
-            while query.find('param') != -1:
-                pos = query.find('param')
-                num = query[pos + 5]
-                if '-' in args[int(num) - 1]:
-                    args[int(num) - 1] = '"' + args[int(num) - 1] + '"'
-                query = query.replace('param'+num, args[int(num) - 1])
-        results = eval('mongodb.'+query)
-        results = json_util.dumps(results, sort_keys=True, indent=4)
+    return render_template('leaflet.html')
 
-        if "find" in query:
-            return render_template('leaflet.html', results=results)
-        else:
-            return "ok"
-    except:
-        return render_template('mongo.html', results={'query': query, 'problema': 'falta la base de datos de mongo'})
 
 if __name__ == "__main__":
-    app.run()
-
+    app.run(
